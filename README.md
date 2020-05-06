@@ -1,4 +1,4 @@
-# photo-app-graphql
+# first-graphql
 
 ## Setup Instructions
 
