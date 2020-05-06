@@ -1,0 +1,36 @@
+version: '3'
+services:
+  # api:
+  #   build: .
+  #   volumes:
+  #       - ./:/app
+  #       - /app/node_modules
+  #   ports:
+  #     - "4000:4000"
+  #   links:
+  #     - mongo
+
+  mongo:
+    build: .docker/mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    links:
+      - mongo
+    ports:
+      - '8081:8081'
+
+  mongo_seed:
+    build: .docker/mongo_seed
+    links:
+      - mongo
+
+  mongo-data:
+    image: busybox
+
+volumes:
+  mongo-data:
